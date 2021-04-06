@@ -36,18 +36,14 @@ def add_members_to_key(split_input):
     else:
         dictionary[key] = [value]
         print('Added')
-    
-    return 'Added'
 
 # Returns all the keys in the dictionary. Order is not guaranteed.
 def list_all_keys():
     if not dictionary:
         print('empty set')
     else:
-        print(dictionary.keys())
         for key,value in dictionary.items() :
             print (key)
-    return get_all_keys()
 
 # Returns the collection of strings for the given key.Return order is not guaranteed. 
 # Returns an error if the key does not exists.
@@ -68,7 +64,6 @@ def get_members_for_given_key(split_input):
  # they key is removed from the dictionary. If the key or value does not exist, 
  # displays an error.
 def remove_value_for_given_key(split_input):
-    
     try:
         given_key=split_input[1]
         given_value=split_input[2]
@@ -81,7 +76,6 @@ def remove_value_for_given_key(split_input):
                     del dictionary[given_key]
             else:
                 raise ValueExistsError('ERROR, value does not exist')
-                # print('ERROR, value does not exist')
         else:
             raise NoKeyError('ERROR, key does not exist')
     except ValueExistsError as vee:
@@ -98,6 +92,7 @@ def remove_all_value_for_given_key(split_input):
         given_key=split_input[1]
         if given_key in dictionary: 
             del dictionary[given_key]
+            print('Removed')
         else:
             raise NoKeyError('ERROR, key does not exist')
     except NoKeyError as nke:
@@ -114,6 +109,7 @@ def clear_all_keys(split_input):
 def key_exists(split_input):
     given_key =split_input[1]
     if not given_key in dictionary:
+        print('false')
         return False
     else:
         print('true')
@@ -125,7 +121,7 @@ def value_exists(split_input):
         given_key=split_input[1]
         given_value=split_input[2]
 
-        if key_exists(split_input):
+        if given_key in dictionary:
             values_for_given_key = dictionary.get(given_key)
             if given_value in values_for_given_key:
                 print('true')
@@ -141,21 +137,16 @@ def value_exists(split_input):
 # Returns all the values in the dictionary. Returns nothing if there are none. 
 # Order is not guaranteed.
 def get_all_values():
-    all_values = []
     for key,value in dictionary.items():
         for x in range(len(value)):
             print(value[x])
-            all_values.append(value[x])
-    return all_values
 
 # Returns all keys in the dictionary and all of their values. Returns nothing if there are none. 
 # Order is not guaranteed.
 def get_all_keys():
-    all_keys = []
     for key,value in dictionary.items():
         print(key)
-        all_keys.append(key)
-    return all_keys
+ 
 
 # For each command validate is user entered necessary input params.
 def validate_input_params(split_input,command):
@@ -228,7 +219,6 @@ def main():
         print(ice.message)
     except Exception as e:
         print(e.message)
-
 
 if __name__ == "__main__":
     main()
