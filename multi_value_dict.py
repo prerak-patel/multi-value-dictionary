@@ -3,7 +3,6 @@ class multi_value_dict:
     def __init__(self):
         self.dictionary = {}
     
-
     # Add a member to a collection for a given key. 
     # Displays an error if the value already existed in the collection.
     def add_members_to_key(self,given_key,given_val):
@@ -11,7 +10,6 @@ class multi_value_dict:
             if given_key in self.dictionary:  
                 if given_val in self.dictionary.get(given_key):
                     raise Exception('ERROR, value already exists.')
-                    # print('ERROR, value already exists.')
                 else:
                     self.dictionary[given_key].append(given_val)
                     print('Added')
@@ -28,6 +26,7 @@ class multi_value_dict:
         else:
             for key,value in self.dictionary.items() :
                 print (key)
+        return
 
     # Returns the collection of strings for the given key.Return order is not guaranteed. 
     # Returns an error if the key does not exists.
@@ -192,10 +191,8 @@ while(active):
                         mvd.get_all_keys_with_values()
                     else:
                         raise Exception('Invalid numbers of input params.')
-                        # print('Invalid numbers of input params.')
                 else:
                     raise Exception('Please enter a valid command.')
-                    # print('Please enter a valid command.')
         else:
             raise ValueError('Please enter a valid input.')
     except ValueError as ve:
